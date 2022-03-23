@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Includes;
+
 class Database
 {
     private $host = 'localhost';
@@ -10,5 +12,8 @@ class Database
     public function createDb()
     {
         return $connection = new mysqli($this->host, $this->name, $this->password, $this->db_name);
+    }
+    public function hi(){
+        echo 'hi';
     }
 }

@@ -1,3 +1,24 @@
+<?php 
+require_once realpath('vendor/autoload.php');
+
+use App\Includes\Database;
+
+$connection = new Database;
+
+$connection->hi();
+
+
+
+
+
+
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
