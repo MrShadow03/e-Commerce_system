@@ -1,11 +1,21 @@
-<?php 
-require_once realpath('vendor/autoload.php');
+<?php
 
 use App\Includes\Database;
+use App\Includes\SignUpCntr;
 
-$connection = new Database;
+include_once 'vendor/autoload.php';
 
-$connection->hi();
+if (isset($_POST['submit'])) {
+  $name = $_POST['name'];
+  $email = $_POST['email'];
+  $phone = $_POST['phone'];
+  $password = $_POST['password'];
+  $confirm_password = $_POST['confirm_password'];
+
+  $signUp = new SignUpCntr($name, $email, $phone, $password, $confirm_password);
+
+  $signUp->signUpUser();
+}
 
 
 
@@ -456,28 +466,28 @@ $connection->hi();
           <div class="col-md-6 col-sm-6 create-new-account">
             <h4 class="checkout-subtitle">Create a new account</h4>
             <p class="text title-tag-line">Create your new account.</p>
-            <form class="register-form outer-top-xs" role="form">
+            <form class="register-form outer-top-xs" role="form" action="sign-in.php" method="POST">
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2">
+                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2" name="email">
               </div>
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="name">
               </div>
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="phone">
               </div>
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1">Password <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                <input type="password" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="password">
               </div>
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1">Confirm Password <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                <input type="password" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="confirm_password">
               </div>
-              <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
+              <button type="submit" class="btn-upper btn btn-primary checkout-page-button" name="submit">Sign Up</button>
             </form>
 
 

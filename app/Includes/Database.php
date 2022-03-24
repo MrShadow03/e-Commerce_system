@@ -9,11 +9,8 @@ class Database
     private $password = '';
     private $db_name = 'ecommerce';
 
-    public function createDb()
+    private function connection()
     {
         return $connection = new mysqli($this->host, $this->name, $this->password, $this->db_name);
-    }
-    public function hi(){
-        echo 'hi';
     }
 }

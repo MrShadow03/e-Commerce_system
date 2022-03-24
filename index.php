@@ -1,3 +1,10 @@
+<?php
+
+include_once 'vendor/autoload.php';
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
