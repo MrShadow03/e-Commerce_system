@@ -15,7 +15,6 @@ if (isset($_POST['submit'])) {
   $signUp = new SignUpCntr($name, $email, $phone, $password, $confirm_password);
 
   $alert = $signUp->signUpUser();
-  $signUp->signUpUser();
 }
 
 

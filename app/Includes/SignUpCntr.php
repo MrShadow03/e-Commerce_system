@@ -2,7 +2,9 @@
 
 namespace App\Includes;
 
-class SignUpCntr
+use App\Controller\SignUpDb;
+
+class SignUpCntr extends SignUpDb
 {
     private $name;
     private $email;
@@ -40,8 +42,9 @@ class SignUpCntr
                 return $alert = $this->alert('danger', 'Passwords must be at least 8 character long.');
             }
         } else {
+            $this->dataInsert($this->name,$this->email,$this->phone,$this->password);
             return $alert = '<div class="alert alert-' . $type = 'success' . ' alert-dismissible" role="alert">
-                <strong>Congrats!</strong> ' . $message = 'Submitted Successfully' . '
+                <strong>Congrats!</strong> ' . $message = 'Submitted Successfully. Try to sign in.' . '
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

@@ -2,6 +2,10 @@
 
 namespace App\Includes;
 
+use mysqli;
+use PDO;
+use PDOException;
+
 class Database
 {
     private $host = 'localhost';
@@ -9,8 +13,10 @@ class Database
     private $password = '';
     private $db_name = 'ecommerce';
 
-    private function connection()
+    protected function connection()
     {
-        return $connection = new mysqli($this->host, $this->name, $this->password, $this->db_name);
+        $connection = new mysqli($this->host, $this->name, $this->password, $this->db_name);
+        return $connection;
+
     }
 }
