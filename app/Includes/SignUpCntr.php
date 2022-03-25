@@ -18,15 +18,55 @@ class SignUpCntr
         $this->password = $password;
         $this->confirm_password = $confirm_password;
     }
+    private function alert($type, $message)
+    {
+        return '<div class="alert alert-' . $type . ' alert-dismissible" role="alert">
+                <strong>Error!</strong> ' . $message . '
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>';
+    }
     public function signUpUser()
     {
         if ($this->notEmptyCheck() == false) {
-            echo "Error! Empty field/s detected1";
+            return $alert = $this->alert('danger', 'Empty field.');
+        } elseif ($this->emailCheck() == false) {
+            return $alert = $this->alert('danger', 'Invalid Email.');
+        } elseif ($this->passwordCheck() == false) {
+            if ($this->password != $this->confirm_password) {
+                return $alert = $this->alert('danger', 'Passwords doesn\'t match.');
+            } elseif (strlen($this->password) < 8) {
+                return $alert = $this->alert('danger', 'Passwords must be at least 8 character long.');
+            }
+        } else {
+            return $alert = '<div class="alert alert-' . $type = 'success' . ' alert-dismissible" role="alert">
+                <strong>Congrats!</strong> ' . $message = 'Submitted Successfully' . '
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>';
         }
     }
     public function notEmptyCheck()
     {
         if (empty($this->name) || empty($this->email) || empty($this->phone) || empty($this->password) || empty($this->confirm_password)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public function emailCheck()
+    {
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public function passwordCheck()
+    {
+        if ($this->password != $this->confirm_password || strlen($this->password) < 8) {
             return false;
         } else {
             return true;

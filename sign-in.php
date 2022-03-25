@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
 
   $signUp = new SignUpCntr($name, $email, $phone, $password, $confirm_password);
 
+  $alert = $signUp->signUpUser();
   $signUp->signUpUser();
 }
 
@@ -465,11 +466,13 @@ if (isset($_POST['submit'])) {
           <!-- create a new account -->
           <div class="col-md-6 col-sm-6 create-new-account">
             <h4 class="checkout-subtitle">Create a new account</h4>
-            <p class="text title-tag-line">Create your new account.</p>
+            <p class="text title-tag-line"><?php if (isset($alert)) {
+                                              echo $alert;
+                                            } ?></p>
             <form class="register-form outer-top-xs" role="form" action="sign-in.php" method="POST">
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail2">Email Address <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2" name="email">
+                <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail2" name="email">
               </div>
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1">Name <span>*</span></label>
