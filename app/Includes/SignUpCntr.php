@@ -64,6 +64,9 @@ class SignUpCntr extends SignUpDb
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             return false;
         } else {
+            if($this->existsEmail($this->email)==true) {
+
+            }
             return true;
         }
     }

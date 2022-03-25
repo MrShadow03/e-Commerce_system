@@ -50,6 +50,7 @@ include_once 'vendor/autoload.php';
         <div class="header-top-inner">
           <div class="cnt-account">
             <ul class="list-unstyled">
+              <li class="myaccount"><a href="admin.php"><span>Admin Panel</span></a></li>
               <li class="myaccount"><a href="#"><span>My Account</span></a></li>
               <li class="wishlist"><a href="#"><span>Wishlist</span></a></li>
               <li class="header_cart hidden-xs"><a href="#"><span>My Cart</span></a></li>
