@@ -1,6 +1,7 @@
 <?php
 
 use App\Includes\Database;
+use App\Includes\LogInCntr;
 use App\Includes\SignUpCntr;
 
 include_once 'vendor/autoload.php';
@@ -17,7 +18,13 @@ if (isset($_POST['submit'])) {
   $alert = $signUp->signUpUser();
 }
 
+if (isset($_POST['login_button'])){
+  $login_email = $_POST['login_email'];
+  $login_password = $_POST['login_password'];
 
+  $login = new LogInCntr($login_email,$login_password);
+  $login_alert=$login->loginUser();
+}
 
 
 
@@ -437,19 +444,22 @@ if (isset($_POST['submit'])) {
           <!-- Sign-in -->
           <div class="col-md-6 col-sm-6 sign-in">
             <h4 class="">Sign in</h4>
-            <p class="">Hello, Welcome to your account.</p>
+            <p class=""><?php if (isset($login_alert)) {
+                                    echo $login_alert;
+                                  } ?></p>
             <div class="social-sign-in outer-top-xs">
               <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
               <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
             </div>
-            <form class="register-form outer-top-xs" role="form">
+
+            <form class="register-form outer-top-xs" role="form" action="sign-in.php" method="POST">
               <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">
+                <input type="text" class="form-control unicase-form-control text-input" id="exampleInputEmail1" name="login_email">
               </div>
               <div class="form-group">
                 <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1">
+                <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" name="login_password">
               </div>
               <div class="radio outer-xs">
                 <label>
@@ -457,7 +467,7 @@ if (isset($_POST['submit'])) {
                 </label>
                 <a href="#" class="forgot-password pull-right">Forgot your Password?</a>
               </div>
-              <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+              <button type="submit" class="btn-upper btn btn-primary checkout-page-button" name="login_button">Login</button>
             </form>
           </div>
           <!-- Sign-in -->
