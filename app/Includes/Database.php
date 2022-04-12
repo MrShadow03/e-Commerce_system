@@ -17,6 +17,5 @@ class Database
     {
         $connection = new mysqli($this->host, $this->name, $this->password, $this->db_name);
         return $connection;
-
     }
 }

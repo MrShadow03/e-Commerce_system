@@ -20,7 +20,8 @@ include_once 'vendor/autoload.php';
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <!-- Customizable CSS -->
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/blue.css">
@@ -50,7 +51,7 @@ include_once 'vendor/autoload.php';
         <div class="header-top-inner">
           <div class="cnt-account">
             <ul class="list-unstyled">
-              <li class="myaccount"><a href="admin.php"><span>Admin Panel</span></a></li>
+              <li class="myaccount"><a href="table.php"><span>Admin Panel</span></a></li>
               <li class="myaccount"><a href="#"><span>My Account</span></a></li>
               <li class="wishlist"><a href="#"><span>Wishlist</span></a></li>
               <li class="header_cart hidden-xs"><a href="#"><span>My Cart</span></a></li>

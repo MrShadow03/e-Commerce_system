@@ -18,12 +18,12 @@ if (isset($_POST['submit'])) {
   $alert = $signUp->signUpUser();
 }
 
-if (isset($_POST['login_button'])){
+if (isset($_POST['login_button'])) {
   $login_email = $_POST['login_email'];
   $login_password = $_POST['login_password'];
 
-  $login = new LogInCntr($login_email,$login_password);
-  $login_alert=$login->loginUser();
+  $login = new LogInCntr($login_email, $login_password);
+  $login_alert = $login->loginUser();
 }
 
 
@@ -51,7 +51,8 @@ if (isset($_POST['login_button'])){
 
   <!-- Bootstrap Core CSS -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <!-- Customizable CSS -->
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/blue.css">
@@ -81,6 +82,7 @@ if (isset($_POST['login_button'])){
         <div class="header-top-inner">
           <div class="cnt-account">
             <ul class="list-unstyled">
+              <li class="myaccount"><a href="table.php"><span>Admin Panel</span></a></li>
               <li class="myaccount"><a href="#"><span>My Account</span></a></li>
               <li class="wishlist"><a href="#"><span>Wishlist</span></a></li>
               <li class="header_cart hidden-xs"><a href="#"><span>My Cart</span></a></li>
@@ -445,8 +447,8 @@ if (isset($_POST['login_button'])){
           <div class="col-md-6 col-sm-6 sign-in">
             <h4 class="">Sign in</h4>
             <p class=""><?php if (isset($login_alert)) {
-                                    echo $login_alert;
-                                  } ?></p>
+                          echo $login_alert;
+                        } ?></p>
             <div class="social-sign-in outer-top-xs">
               <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
               <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>

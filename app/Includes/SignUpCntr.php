@@ -34,7 +34,11 @@ class SignUpCntr extends SignUpDb
         if ($this->notEmptyCheck() == false) {
             return $alert = $this->alert('danger', 'Empty field.');
         } elseif ($this->emailCheck() == false) {
-            return $alert = $this->alert('danger', 'Invalid Email.');
+            if ($this->existsEmail($this->email) == true) {
+                return $alert = $this->alert('danger', 'Email is already associated with an account. Try to login.');
+            } else {
+                return $alert = $this->alert('danger', 'Invalid Email.');
+            }
         } elseif ($this->passwordCheck() == false) {
             if ($this->password != $this->confirm_password) {
                 return $alert = $this->alert('danger', 'Passwords doesn\'t match.');
@@ -42,7 +46,7 @@ class SignUpCntr extends SignUpDb
                 return $alert = $this->alert('danger', 'Passwords must be at least 8 character long.');
             }
         } else {
-            $this->dataInsert($this->name,$this->email,$this->phone,$this->password);
+            $this->dataInsert($this->name, $this->email, $this->phone, $this->password);
             return $alert = '<div class="alert alert-' . $type = 'success' . ' alert-dismissible" role="alert">
                 <strong>Congrats!</strong> ' . $message = 'Submitted Successfully. Try to sign in.' . '
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -61,12 +65,9 @@ class SignUpCntr extends SignUpDb
     }
     public function emailCheck()
     {
-        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL) || $this->existsEmail($this->email) == true) {
             return false;
         } else {
-            if($this->existsEmail($this->email)==true) {
-
-            }
             return true;
         }
     }
